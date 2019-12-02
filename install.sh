@@ -54,6 +54,10 @@ cd /etc/mysql/mysql.conf.d
 echo 'sql-mode=""' >> mysqld.cnf
 sudo systemctl restart mysql
 
+#mysql dostęp do bazy danych z innych adresów (komentujemy linijkę bind-address)
+/etc/mysql/mysql.conf.d/mysqld.cnf
+#bind-address = 127.0.0.1
+
 #VirtualHost
 #<VirtualHost *:80>
 #    DocumentRoot "/var/www/html/public"
