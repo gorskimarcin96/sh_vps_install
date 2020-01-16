@@ -5,14 +5,14 @@
 
 ssh -i .ssh/stefan root@164.132.42.211
 
+#apache
+sudo apt update
+sudo apt install apache2 -y
+
 #firewall
 sudo ufw allow OpenSSH
 sudo ufw enable #-y
 sudo ufw allow 'Apache Full'
-
-#apache
-sudo apt update
-sudo apt install apache2 -y
 
 #VirtualHost
 echo '<VirtualHost *:80>' > /etc/apache2/sites-available/mgorski.dev.conf
@@ -64,7 +64,7 @@ sudo apt-get install software-properties-common
 sudo add-apt-repository universe
 sudo add-apt-repository ppa:certbot/certbot -y
 sudo apt-get update
-sudo apt-get install certbot python-certbot-apache
+sudo apt-get install certbot python-certbot-apache -y
 sudo certbot --apache -d mgorski.dev -d www.mgorski.dev -m gorskimarcin96@gmail.com
 
 #php
@@ -76,7 +76,7 @@ sudo apt install php-cli
 
 #mysql
 sudo apt install mysql-server -y
-sudo mysql_secure_installation -y
+sudo mysql_secure_installation #-y
 sudo mysql <<EOF
 	ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'TWOJE_HASŁO';
 	FLUSH PRIVILEGES;
@@ -105,9 +105,3 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn -y
 yarn install
-
-#node.js
-sudo apt-get install npm -y
-npm install -g @angular/cli
-sudo npm cache clean -f
-sudo npm install -g
